@@ -37,7 +37,7 @@ This release introduces simulated security measures:
 1.  **Clone the repository:**
 
     ```bash
-    git clone [https://github.com/your-username/ev-charging-network.git](https://github.com/your-username/ev-charging-network.git)
+    git clone https://github.com/sergiserer/distributed-systems.git
     cd ev-charging-network
     ```
 
