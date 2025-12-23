@@ -1,0 +1,6 @@
+kafka-python
+flask
+requests
+flask-cors
+cryptography
+pyopenssl
