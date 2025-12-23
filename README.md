@@ -62,3 +62,69 @@ Launch the Zookeeper and Kafka containers:
 
 ```bash
 docker-compose -f docker-compose-central.yml up -d
+```
+
+### 2. Start Core Services
+Open separate terminals for each service:
+
+Central (Main Server & GUI):
+
+```bash
+python EV_Central.py
+```
+
+Registry (Auth Service):
+
+```bash
+python EV_Registry.py
+```
+
+### 3. Deploy Charging Points
+Use the automated launcher to start multiple CP simulators (Engine + Monitor) simultaneously:
+
+```bash
+python launch.py
+```
+
+This will spawn multiple windows simulating different locations (Madrid, Barcelona, etc.).
+
+### 4. Client & Auxiliary Services (Optional)
+Weather Service:
+
+```bash
+python EV_W.py
+```
+
+Driver App:
+
+```bash
+python EV_Driver.py
+```
+
+### 5. Web Dashboard
+Open `index.html` in your browser to view the live network status and telemetry.
+
+## Project Structure
+
+```text
+.
+├── docker-compose-central.yml  # Kafka/Zookeeper Configuration
+├── launch.py                   # Launcher script for multiple CPs
+├── index.html                  # Public Web Dashboard
+├── services.txt                # Automated route file for Drivers
+│
+├── [Core]
+│   ├── EV_Central.py           # Central Backend + Flask API
+│   ├── central_gui.py          # Central GUI Module
+│   ├── init_db.py              # SQLite Database Initializer
+│
+├── [Services]
+│   ├── EV_Registry.py          # Registration & Auth Service
+│   ├── EV_W.py                 # Weather Alert Service
+│
+├── [Nodes]
+│   ├── EV_CP_E.py              # Engine (Hardware Simulator)
+│   ├── EV_CP_M.py              # Monitor (CP Controller)
+│   ├── EV_Driver.py            # Driver Backend
+│   └── driver_gui.py           # Driver GUI
+```
